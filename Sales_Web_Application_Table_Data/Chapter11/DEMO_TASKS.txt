@@ -1,0 +1,21 @@
+Create table DEMO_TASKS
+   (	"ID" NUMBER NOT NULL ENABLE, 
+	"TASK_NAME" VARCHAR2(255), 
+	"TASK_DESCRIPTION" VARCHAR2(4000), 
+	"START_DATE" DATE, 
+	"END_DATE" DATE, 
+	"STATUS" VARCHAR2(30), 
+	"USERNAME" VARCHAR2(50) 
+   );   
+
+
+
+insert into demo_tasks values (1,'Create applications from spreadsheets', 'Description of Create applications from spreadsheets', to_date('03-11-2020','mm-dd-yyyy'), to_date('03-15-2020','mm-dd-yyyy'), 'Open', 'JOHN');
+
+insert into demo_tasks values (2,'Send links to previous spreadsheet owners', 'Description of Send links to previous spreadsheet owners', to_date('03-03-2020','mm-dd-yyyy'), to_date('03-08-2020','mm-dd-yyyy'), 'Pending', 'AHMED');
+
+insert into demo_tasks values (3,'Specify security authentication scheme(s)', 'Description of Specify security authentication scheme(s)', to_date('03-18-2020','mm-dd-yyyy'), to_date('03-20-2020','mm-dd-yyyy'), 'On-Hold', 'RIAZ');
+
+insert into demo_tasks values (4,'Configure Workspace provisioning', 'Description of Configure Workspace provisioning', to_date('03-25-2020','mm-dd-yyyy'), to_date('03-25-2020','mm-dd-yyyy'), 'Closed', 'SARIM');
+
+insert into demo_tasks values (5,'Service Level Agreeement', 'Description of Service Level Agreement', to_date('03-29-2020','mm-dd-yyyy'), to_date('12-31-2020','mm-dd-yyyy'), 'Pending', 'SAAD');

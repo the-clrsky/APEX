@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2018-01-22T12:47:18 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Monthly_Review" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="66dc6233-3621-4169-bacf-f4ffbcc9d837">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<style name="Crosstab_CH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CG" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CT" mode="Opaque" backcolor="#005FB3">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="Crosstab_CD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<leftPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<rightPen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="FROM_DATE" class="java.lang.String"/>
+	<parameter name="TO_DATE" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select o.order_id, to_char(o.order_timestamp,'Month yyyy') order_month, 
+            o.order_timestamp order_date, 
+            c.cust_last_name || ', ' || c.cust_first_name customer_name, 
+            c.cust_state, o.user_name sales_rep, 
+            (select count(*) from demo_order_items oi where oi.order_id = o.order_id)  order_items, 
+            o.order_total 
+from demo_orders o, demo_customers c 
+where o.customer_id = c.customer_id and 
+             o.order_timestamp between to_date($P{FROM_DATE},'DD-MM-YYYY') and to_date($P{TO_DATE}, 'DD-MM-YYYY')
+order by order_month]]>
+	</queryString>
+	<field name="ORDER_ID" class="java.math.BigDecimal"/>
+	<field name="ORDER_MONTH" class="java.lang.String"/>
+	<field name="ORDER_DATE" class="java.sql.Timestamp"/>
+	<field name="CUSTOMER_NAME" class="java.lang.String"/>
+	<field name="CUST_STATE" class="java.lang.String"/>
+	<field name="SALES_REP" class="java.lang.String"/>
+	<field name="ORDER_ITEMS" class="java.math.BigDecimal"/>
+	<field name="ORDER_TOTAL" class="java.math.BigDecimal"/>
+	<variable name="ORDER_TOTAL1" class="java.math.BigDecimal" resetType="Group" resetGroup="ORDER_MONTH" calculation="Sum">
+		<variableExpression><![CDATA[$F{ORDER_TOTAL}]]></variableExpression>
+	</variable>
+	<variable name="ORDER_ITEMS1" class="java.math.BigDecimal" resetType="Group" resetGroup="ORDER_MONTH" calculation="Sum">
+		<variableExpression><![CDATA[$F{ORDER_ITEMS}]]></variableExpression>
+	</variable>
+	<variable name="ORDER_TOTAL2" class="java.math.BigDecimal" resetType="Group" resetGroup="ORDER_MONTH" calculation="Average">
+		<variableExpression><![CDATA[$F{ORDER_TOTAL}]]></variableExpression>
+	</variable>
+	<group name="ORDER_MONTH">
+		<groupExpression><![CDATA[$F{ORDER_MONTH}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<rectangle>
+					<reportElement x="0" y="3" width="120" height="17" forecolor="#589FC4" backcolor="#589FC4" uuid="212e4ee7-bf62-4843-9fc1-b676d54a68e7"/>
+				</rectangle>
+				<textField>
+					<reportElement x="0" y="0" width="151" height="20" forecolor="#FFFFFF" uuid="3f4b5415-cee3-408f-91e6-19ac4d229790"/>
+					<textElement>
+						<font size="14" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ORDER_MONTH}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="48">
+				<textField>
+					<reportElement x="330" y="9" width="114" height="19" uuid="f02fbdd0-d115-44bd-9382-f91f8a58148b"/>
+					<textElement textAlignment="Center">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ORDER_ITEMS1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="342" y="32" width="214" height="1" uuid="10a8b00f-8820-4bec-afe1-137225b2ada9"/>
+				</line>
+				<line>
+					<reportElement x="343" y="4" width="211" height="1" uuid="9ab7999d-e9c4-406b-a81c-3abec2e206a2"/>
+				</line>
+				<textField pattern="#,###.###;(#,###.###)">
+					<reportElement x="430" y="9" width="120" height="19" uuid="ef0983ec-a561-462e-aab9-f33883e79d22"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{ORDER_TOTAL2}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="407" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="10" width="550" height="30" uuid="ebec0fd9-06dd-45b5-af4d-834b1465cb37"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ABC CORPORATION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="50" width="560" height="40" uuid="ef1e2c41-2861-48da-8a82-60e2e83da1ff"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[35-A/3, ABC House, Raymond Street off Mansfield Street,
+Chicago-IL, 6350, USA.]]></text>
+			</staticText>
+			<bar3DChart>
+				<chart evaluationTime="Report">
+					<reportElement x="0" y="100" width="560" height="307" uuid="32cdd18e-c6a5-4e9e-89e7-dac55dc2cfb3"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<categoryDataset>
+					<categorySeries>
+						<seriesExpression><![CDATA[$F{ORDER_MONTH}]]></seriesExpression>
+						<categoryExpression><![CDATA[$F{ORDER_MONTH}]]></categoryExpression>
+						<valueExpression><![CDATA[$F{ORDER_TOTAL}]]></valueExpression>
+						<labelExpression><![CDATA[$F{ORDER_MONTH}]]></labelExpression>
+					</categorySeries>
+				</categoryDataset>
+				<bar3DPlot>
+					<plot/>
+					<itemLabel/>
+					<categoryAxisFormat>
+						<axisFormat/>
+					</categoryAxisFormat>
+					<valueAxisFormat>
+						<axisFormat/>
+					</valueAxisFormat>
+				</bar3DPlot>
+			</bar3DChart>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="47" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="9" width="554" height="17" forecolor="#589FC4" backcolor="#589FC4" uuid="38224aec-1a4e-403a-b75e-9b8f46292dda"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="11" width="100" height="20" forecolor="#FFFFFF" uuid="eea8540c-0a12-475c-9f5b-f037d8e56a7f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="82" y="11" width="100" height="20" forecolor="#FFFFFF" uuid="ffb4d1bb-a6d0-4add-bc96-430d6ae542af"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="174" y="11" width="100" height="20" forecolor="#FFFFFF" uuid="870402bb-c0bd-4045-8b0c-905ee06c8dc3"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="451" y="11" width="100" height="20" forecolor="#FFFFFF" uuid="88dbfedc-fa30-4838-a271-fc8071f8214d"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Order Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="346" y="11" width="100" height="20" forecolor="#FFFFFF" uuid="7b4b7d59-bdfa-4aea-8ea6-fd5230015c49"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Items Ordered]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="3" width="100" height="18" uuid="26fe7da8-fcfc-4f69-b284-54d082a0cde4"/>
+				<textFieldExpression><![CDATA[$F{ORDER_ID}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="82" y="3" width="100" height="18" uuid="20755929-9c20-44be-b165-605c141fd402"/>
+				<textFieldExpression><![CDATA[$F{ORDER_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="174" y="3" width="166" height="18" uuid="fc2b6056-0dc4-485e-bf59-6bf1aad7442c"/>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_NAME}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="451" y="3" width="100" height="18" uuid="756a976e-4bc7-42d1-a6f3-7008b87a87c0"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{ORDER_TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="348" y="4" width="100" height="17" uuid="398d4c1b-8bcf-43d0-9441-a339e021a481"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ORDER_ITEMS}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="350" y="12" width="100" height="30" uuid="4bf9ee32-2e73-46e4-ae70-634ed2f3372a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="450" y="12" width="100" height="30" uuid="0caa9fd1-837e-4596-931d-02f5949fc724"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" of " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="107" splitType="Stretch">
+			<crosstab>
+				<reportElement x="3" y="10" width="545" height="90" uuid="656aec9c-61ee-42a8-91fa-d275fa2e0b3c">
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
+				</reportElement>
+				<rowGroup name="CUST_STATE1" width="40" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{CUST_STATE}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents mode="Opaque" style="Crosstab_CH">
+							<textField>
+								<reportElement x="0" y="0" width="40" height="40" uuid="a7e66f39-7c6f-4b05-b156-9332a773028c"/>
+								<textFieldExpression><![CDATA[$V{CUST_STATE1}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents mode="Opaque" style="Crosstab_CT">
+							<staticText>
+								<reportElement x="0" y="0" width="120" height="20" forecolor="#FFFFFF" uuid="6b0310e3-5d8a-4ff9-8bd0-b369975f2653"/>
+								<text><![CDATA[Total CUST_STATE1]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<rowGroup name="CUSTOMER_NAME1" width="110" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{CUSTOMER_NAME}]]></bucketExpression>
+					</bucket>
+					<crosstabRowHeader>
+						<cellContents mode="Opaque" style="Crosstab_CH">
+							<textField>
+								<reportElement x="0" y="0" width="110" height="20" uuid="cb7c41f4-12a6-4e36-b7ac-be797765cf7e"/>
+								<textFieldExpression><![CDATA[$V{CUSTOMER_NAME1}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabRowHeader>
+					<crosstabTotalRowHeader>
+						<cellContents mode="Opaque" style="Crosstab_CG">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="20" uuid="457ec96a-0a11-4a89-a279-abf343a26000"/>
+								<text><![CDATA[Total CUSTOMER_NAME1]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalRowHeader>
+				</rowGroup>
+				<columnGroup name="ORDER_MONTH1" height="20" totalPosition="End">
+					<bucket class="java.lang.String">
+						<bucketExpression><![CDATA[$F{ORDER_MONTH}]]></bucketExpression>
+					</bucket>
+					<crosstabColumnHeader>
+						<cellContents mode="Opaque" style="Crosstab_CH">
+							<textField>
+								<reportElement x="0" y="0" width="60" height="20" uuid="1bbb978f-18f3-48d4-a69d-19a5d12965f7"/>
+								<textElement textAlignment="Right"/>
+								<textFieldExpression><![CDATA[$V{ORDER_MONTH1}]]></textFieldExpression>
+							</textField>
+						</cellContents>
+					</crosstabColumnHeader>
+					<crosstabTotalColumnHeader>
+						<cellContents mode="Opaque" style="Crosstab_CT">
+							<staticText>
+								<reportElement x="0" y="0" width="60" height="20" forecolor="#FFFFFF" uuid="a796e6eb-4d10-42e0-873c-8bdede3cc7aa"/>
+								<textElement textAlignment="Right"/>
+								<text><![CDATA[Total ORDER_MONTH1]]></text>
+							</staticText>
+						</cellContents>
+					</crosstabTotalColumnHeader>
+				</columnGroup>
+				<measure name="ORDER_TOTAL_MEASURE1" class="java.math.BigDecimal" calculation="Sum">
+					<measureExpression><![CDATA[$F{ORDER_TOTAL}]]></measureExpression>
+				</measure>
+				<crosstabCell width="60" height="20">
+					<cellContents mode="Opaque" style="Crosstab_CD">
+						<textField>
+							<reportElement x="0" y="0" width="60" height="20" uuid="b2faf169-a7a5-413d-80f9-94af0467e010"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA[$V{ORDER_TOTAL_MEASURE1}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="60" height="20" columnTotalGroup="ORDER_MONTH1">
+					<cellContents mode="Opaque" style="Crosstab_CT">
+						<textField>
+							<reportElement x="0" y="0" width="60" height="20" forecolor="#FFFFFF" uuid="fbb191d3-286f-42e3-9bbd-4472083f79a7"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA[$V{ORDER_TOTAL_MEASURE1}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="60" height="20" rowTotalGroup="CUST_STATE1">
+					<cellContents mode="Opaque" style="Crosstab_CT">
+						<textField>
+							<reportElement x="0" y="0" width="60" height="20" forecolor="#FFFFFF" uuid="fd143669-b880-4828-96ee-106580caeb01"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA[$V{ORDER_TOTAL_MEASURE1}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="60" height="20" rowTotalGroup="CUST_STATE1" columnTotalGroup="ORDER_MONTH1">
+					<cellContents mode="Opaque" style="Crosstab_CT">
+						<textField>
+							<reportElement x="0" y="0" width="60" height="20" forecolor="#FFFFFF" uuid="6bada794-a189-4d96-92f7-9a0b0032d6df"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA[$V{ORDER_TOTAL_MEASURE1}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="60" height="20" rowTotalGroup="CUSTOMER_NAME1">
+					<cellContents mode="Opaque" style="Crosstab_CG">
+						<textField>
+							<reportElement x="0" y="0" width="60" height="20" uuid="363ce84e-52ab-4fac-a246-a80ab4e3dda9"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA[$V{ORDER_TOTAL_MEASURE1}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+				<crosstabCell width="60" height="20" rowTotalGroup="CUSTOMER_NAME1" columnTotalGroup="ORDER_MONTH1">
+					<cellContents mode="Opaque" style="Crosstab_CT">
+						<textField>
+							<reportElement x="0" y="0" width="60" height="20" forecolor="#FFFFFF" uuid="b9949ace-b4da-4a75-abe0-860d293e5a15"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA[$V{ORDER_TOTAL_MEASURE1}]]></textFieldExpression>
+						</textField>
+					</cellContents>
+				</crosstabCell>
+			</crosstab>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,10 @@
+$("#dualChart_jet").ojChart({orientation: 'horizontal'});
+
+
+$("#dualChart_jet").ojChart({orientation: 'vertical'});
+
+
+$("#dualChart_jet").ojChart({stack: 'on'});
+
+
+$("#dualChart_jet").ojChart({stack: 'off'});

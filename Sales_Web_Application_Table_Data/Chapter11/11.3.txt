@@ -1,0 +1,18 @@
+SELECT  id, task_name, start_date, end_date, status, username,
+        case status
+          when 'Open'    then 'apex-cal-green'
+          when 'Pending' then 'apex-cal-yellow'
+          when 'Closed'  then 'apex-cal-red'
+          when 'On-Hold' then 'apex-cal-black'
+        end as css_class
+FROM demo_tasks
+
+
+
+
+begin
+    update demo_tasks
+       set start_date = to_date(:APEX$NEW_START_DATE, 'YYYYMMDDHH24MISS'),
+             end_date = to_date(:APEX$NEW_END_DATE, 'YYYYMMDDHH24MISS')
+     where id = :APEX$PK_VALUE;
+end;

@@ -1,0 +1,5 @@
+SELECT empno, ename, job, mgr, hiredate, sal, comm, deptno, onleave,
+              notes, flex4 as tags,
+              case when JOB = 'MANAGER' or JOB = 'PRESIDENT' then '' 
+              else 'UD' end as CTRL
+FROM EBA_DEMO_IG_EMP

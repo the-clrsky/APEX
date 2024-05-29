@@ -1,0 +1,32 @@
+<style>
+    table.apexir_WORKSHEET_CUSTOM { 
+       border: none !important; 
+       box-shadow: none; 
+       -moz-box-shadow: none; 
+       -webkit-box-shadow: none;}
+
+    .apexir_WORKSHEET_DATA td {
+     border-bottom: none !important;}
+
+    table.reportDetail td {
+       padding: 2px 4px !important;
+       border: none !important;
+       font: 11px/16px Arial, sans-serif;}
+
+    table.reportDetail td.separator {
+       background: #F0F0F0 !important;
+       padding: 0 !important;
+       height: 1px !important;
+       padding: 0;
+       line-height: 2px !important;
+       overflow: hidden;}
+
+    table.reportDetail td h1 {margin: 0 !important}
+
+    table.reportDetail td img {
+       margin-top: 8px; 
+       border: 4px solid #CCC; 
+       -moz-border-radius: 4px; 
+       -webkit-border-radius: 4px;}
+</style>
+<table class="reportDetail">

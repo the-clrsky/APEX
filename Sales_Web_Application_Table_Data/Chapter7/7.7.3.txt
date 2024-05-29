@@ -1,0 +1,3 @@
+select p.product_name, oi.unit_price, oi.quantity, (oi.unit_price * oi.quantity) extended_price   
+from demo_order_items oi, demo_product_info p
+where oi.product_id = p.product_id and oi.order_id = :P14_ORDER_ID

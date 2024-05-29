@@ -1,0 +1,1 @@
+select state_name display_value, state_id return_value from demo_states order by 1

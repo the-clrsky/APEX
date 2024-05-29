@@ -1,0 +1,7 @@
+SELECT  p.product_name||' - '||SUM(oi.quantity)||' x' 
+        ||to_char(p.list_price,'L999G99')||'' product,
+        SUM(oi.quantity * oi.unit_price) sales,  p.product_id
+FROM demo_order_items oi,    demo_product_info p
+WHERE oi.product_id = p.product_id
+GROUP BY p.Product_id, p.product_name, p.list_price
+ORDER BY 2 desc

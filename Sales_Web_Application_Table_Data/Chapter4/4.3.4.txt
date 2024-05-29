@@ -1,0 +1,5 @@
+SELECT p.category Category, sum(o.order_total) Sales
+FROM   demo_orders o, demo_order_items oi, demo_product_info p
+WHERE  o.order_id = oi.order_id AND oi.product_id = p.product_id
+GROUP BY category 
+ORDER BY 2 desc

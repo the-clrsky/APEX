@@ -1,0 +1,44 @@
+Step 7 - P429_CUSTOMER_ID
+=========================
+select cust_first_name ||' '|| cust_last_name d, customer_id r  
+from demo_customers 
+
+
+Step 7 - P429_USER_NAME
+=======================
+select distinct user_name d, user_name r 
+from demo_orders 
+union
+select upper(:APP_USER) d, upper(:APP_USER) r 
+from dual
+order by 1
+
+
+Step 9
+======
+select oi.order_item_id, oi.order_id, oi.product_id, pi.product_name, oi.unit_price, oi.quantity, (oi.unit_price * oi.quantity) extended_price
+from DEMO_ORDER_ITEMS oi, DEMO_PRODUCT_INFO pi 
+where oi.ORDER_ID = :P429_ORDER_ID 
+and oi.product_id = pi.product_id (+)
+
+
+
+Step 14
+=======
+begin  
+     case :APEX$ROW_STATUS  
+     when 'C' then   
+         insert into DEMO_ORDER_ITEMS (order_item_id, order_id, product_id, unit_price, quantity)  
+         values (null, :P429_ORDER_ID, :PRODUCT_ID, :UNIT_PRICE, :QUANTITY);  
+     when 'U' then  
+         update DEMO_ORDER_ITEMS  
+            set product_id  = :PRODUCT_ID, unit_price = :UNIT_PRICE, quantity = :QUANTITY 
+            where order_item_id = :ORDER_ITEM_ID and order_id = :ORDER_ID;  
+     when 'D' then  
+         delete DEMO_ORDER_ITEMS 
+         where order_item_id = :ORDER_ITEM_ID and order_id = :P429_ORDER_ID;  
+     end case;  
+end;  
+
+
+
