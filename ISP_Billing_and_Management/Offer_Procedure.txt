@@ -1,0 +1,37 @@
+create or replace PROCEDURE insert_offer_master_details (
+   P_OFFER_NAME IN VARCHAR2, P_OFFER_APP_MTHS IN NUMBER)
+IS
+   v_offer_id   NUMBER;
+
+   CURSOR c_col
+   IS
+      SELECT N001 AS Area_ID,
+             C001 AS CONDITIONS,
+             N002 AS AMOUNT,
+             C002 AS START_Date,
+             C003 AS END_Date
+        FROM apex_collections
+       WHERE collection_name = 'OFFER';
+BEGIN
+   SELECT NVL (MAX (OFFER_ID), 0) + 1
+     INTO v_offer_id
+     FROM OFFER_MASTER;
+
+
+   INSERT INTO OFFER_MASTER (OFFER_ID, OFFER_NAME, OFFER_APP_MTHS)
+        VALUES (v_offer_id, P_OFFER_NAME, P_OFFER_APP_MTHS);
+
+   IF v_offer_id IS NOT NULL
+   THEN
+      FOR i IN c_col
+      LOOP
+         INSERT INTO OFFER_DETAILS (OFFER_ID, AREA_ID, CONDITIONS, AMOUNT, VALIDITY_START, VALIDITY_STOP)
+              VALUES (v_offer_id, i.Area_ID, i.CONDITIONS, i.AMOUNT, i.START_Date, i.END_Date);
+      END LOOP;
+  
+   commit;
+    apex_application.g_print_success_message := 'Record Inserted';
+
+     END IF;
+END;
+/
