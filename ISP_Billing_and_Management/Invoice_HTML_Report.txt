@@ -1,0 +1,79 @@
+DECLARE
+    cursor c_invoice IS
+        SELECT 
+            i.INVOICE_ID,
+            c.CUST_FIRST_NAME || ' ' || c.CUST_LAST_NAME AS Customer_Full_Name,
+            i.INVOICE_DATE,
+            i.BILLING_MONTH AS B_FROM,
+            i.BILLING_MONTH2 AS B_TO,
+            i.BILLING_YEAR,
+            i.DUE_DATE,
+            i.STATUS,
+            pm.PKG_NAME AS Package_Name,
+            om.OFFER_NAME AS Offer_Name,
+            a.AREA_NAME AS Area_Name,
+            p.POP_NAME AS POP_Name,
+            es.SERVICE_NAME AS Extra_Service_Name,
+            i.USAGE_ID,
+            i.COLLECTION_ID,
+            pc.COLLECTION_DATE,
+            pc.PAYMENT_METHOD,
+            pc.PAYMENT_PROCESSOR,
+            i.GROSS_TOTAL,
+            i.DISCOUNT,
+            i.NET_TOTAL
+        FROM 
+            INVOICE i
+        LEFT JOIN 
+            CUSTOMERS c ON i.CUST_ID = c.CUST_ID
+        LEFT JOIN 
+            PACKAGE_MASTER pm ON i.PKG_ID = pm.PKG_ID
+        LEFT JOIN 
+            OFFER_MASTER om ON i.OFFER_ID = om.OFFER_ID
+        LEFT JOIN 
+            AREA a ON i.AREA_ID = a.AREA_ID
+        LEFT JOIN 
+            POP p ON i.POP_ID = p.POP_ID
+        LEFT JOIN 
+            EXTRA_SERVICES es ON i.EXT_ID = es.EXT_ID
+        LEFT JOIN
+            PAYMENT_COLLECTIONS pc ON i.COLLECTION_ID = pc.COLLECTION_ID
+        WHERE 
+            i.INVOICE_ID = :P141_INVOICE_ID;
+BEGIN
+    FOR rec IN c_invoice LOOP
+        htp.p('<div style="border: 1px solid #000; padding: 20px; margin-bottom: 20px; font-family: Arial, sans-serif;">');
+        htp.p('<h1 style="text-align: center; margin-bottom: 20px;">Invoice</h1>');
+        htp.p('<div style="display: flex; justify-content: space-between; margin-bottom: 20px;">');
+        htp.p('<div>');
+        htp.p('<h2>' || rec.Customer_Full_Name || '</h2>');
+        htp.p('</div>');
+        htp.p('<div style="text-align: right;">');
+        htp.p('<p><strong>Invoice ID:</strong> ' || rec.INVOICE_ID || '</p>');
+        htp.p('<p><strong>Invoice Date:</strong> ' || rec.INVOICE_DATE || '</p>');
+        htp.p('</div>');
+        htp.p('</div>');
+        htp.p('<div style="margin-bottom: 20px;">');
+        htp.p('<p><strong>Billing Period:</strong> ' || rec.B_FROM || ' to ' || rec.B_TO || ' ' || rec.BILLING_YEAR || '</p>');
+        htp.p('<p><strong>Due Date:</strong> ' || rec.DUE_DATE || '</p>');
+        htp.p('<p><strong>Status:</strong> ' || rec.STATUS || '</p>');
+        htp.p('</div>');
+        htp.p('<h3 style="margin-bottom: 10px;">Package Details</h3>');
+        htp.p('<p><strong>Package Name:</strong> ' || rec.Package_Name || '</p>');
+        htp.p('<p><strong>Offer Name:</strong> ' || rec.Offer_Name || '</p>');
+        htp.p('<h3 style="margin-top: 20px; margin-bottom: 10px;">Area and POP Details</h3>');
+        htp.p('<p><strong>Area Name:</strong> ' || rec.Area_Name || '</p>');
+        htp.p('<p><strong>POP Name:</strong> ' || rec.POP_Name || '</p>');
+        htp.p('<h3 style="margin-top: 20px; margin-bottom: 10px;">Extra Services</h3>');
+        htp.p('<p><strong>Extra Service Name:</strong> ' || rec.Extra_Service_Name || '</p>');
+        htp.p('<h3 style="margin-top: 20px; margin-bottom: 10px;">Collection Details</h3>');
+        htp.p('<p><strong>Collection Date:</strong> ' || rec.COLLECTION_DATE || '</p>');
+        htp.p('<p><strong>Payment Method:</strong> ' || rec.PAYMENT_METHOD || '</p>');
+        htp.p('<p><strong>Payment Processor:</strong> ' || rec.PAYMENT_PROCESSOR || '</p>');
+        htp.p('<h3 style="margin-top: 20px; margin-bottom: 10px;">Financial Details</h3>');
+        htp.p('<p><strong>Gross Total:</strong> ' || rec.GROSS_TOTAL || '</p>');
+        htp.p('<p><strong>Discount:</strong> ' || rec.DISCOUNT || '</p>');
+        htp.p('<p><strong>Net Total:</strong> ' || rec.NET_TOTAL || '</p>');
+        htp.p('</div>');
+    END LOOP;
+END;

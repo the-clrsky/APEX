@@ -1,0 +1,132 @@
+declare
+    cursor c_emp is
+        SELECT j.Emp_reg_id,
+               (p.First_name || ' ' || p.last_name) Name,
+               p.father_name,
+               p.mother_name,
+               p.Address,
+               p.Phone,
+               p.email,
+               p.date_of_birth,
+               p.religion,
+               p.blood_group,
+               p.Nationality
+          FROM job_seeker_registration j
+               JOIN Personal_details p ON j.emp_reg_id = p.emp_reg_id
+        WHERE j.emp_reg_id = :P66_EMP_REG_ID;
+
+    cursor c_academic_details is
+        SELECT 
+               a.Name_of_degree,
+               a.Subject,
+               a.Name_of_institute,
+               a.Duration,
+               a.result
+          FROM academic_details a
+        WHERE a.emp_reg_id = :P66_EMP_REG_ID;
+        --
+        cursor c_experience is 
+           SELECT 
+              e.job_title,
+               e.dept_name,
+               to_number(ROUND(e.End_date - e.Start_date) / 365) Year_Of_Experience
+          FROM experience_details e
+		WHERE e.emp_reg_id= :P66_EMP_REG_ID;
+       ---
+       cursor  c_skills is  SELECT 
+                s.Skill_name,
+               s.skill_level
+          FROM skills s
+		WHERE s.emp_reg_id= :P66_EMP_REG_ID;
+        ---
+        cursor   c_references is SELECT 
+             r.Reference_name,
+               r.Designation,
+               r.contact_no
+          FROM REFERENCES r
+		WHERE r.emp_reg_id= :P66_EMP_REG_ID;
+
+begin
+    for rec in c_emp loop
+        htp.p('<div style="border: 1px solid #000; padding: 20px; margin-bottom: 20px; font-family: Arial, sans-serif;">');
+        htp.p('<h1 style="text-align: center;padding:0%;">Curiculam Vitae</h1>');
+        htp.p('<h2 style="text-align: center;padding:0%;">' || rec.Name || '</h2>');
+        htp.p('<h4 style="text-align: center;padding:0%;"><strong>Address:</strong> ' || rec.Address || '</h4>');
+        htp.p('<h4 style="text-align: center;padding:0%;"><strong>Phone:</strong> ' || rec.Phone || '</h4>');
+        htp.p('<h4 style="text-align: center;padding:0%;"><strong>Email:</strong> ' || rec.email || '</h4>');
+        htp.p('<h2>Personal Information</h2>');
+        htp.p('<p><strong>Father Name:</strong> ' || rec.father_name || '</p>');
+        htp.p('<p><strong>Mother Name:</strong> ' || rec.mother_name || '</p>');
+        htp.p('<p><strong>Address:</strong> ' || rec.Address || '</p>');
+        htp.p('<p><strong>Phone:</strong> ' || rec.Phone || '</p>');
+        htp.p('<p><strong>Email:</strong> ' || rec.email || '</p>');
+        htp.p('<p><strong>Date of Birth:</strong> ' || rec.date_of_birth || '</p>');
+        htp.p('<p><strong>Religion:</strong> ' || rec.religion || '</p>');
+        htp.p('<p><strong>Blood Group:</strong> ' || rec.blood_group || '</p>');
+        htp.p('<p><strong>Nationality:</strong> ' || rec.Nationality || '</p>');
+    end loop;
+begin
+  
+  --academic
+    htp.p('<h2>Academic Details</h2>');
+    htp.p('<table border="1" style="width: 100%; border-collapse: collapse;">');
+    htp.p('<tr><th>Degree</th><th>Subject</th><th>Institute</th><th>Duration</th><th>Result</th></tr>');
+    for rec_academi in c_academic_details loop
+        htp.p('<tr>');
+        htp.p('<td>' || rec_academi.Name_of_degree || '</td>');
+        htp.p('<td>' || rec_academi.Subject || '</td>');
+        htp.p('<td>' || rec_academi.Name_of_institute || '</td>');
+        htp.p('<td>' || rec_academi.Duration || '</td>');
+        htp.p('<td>' || rec_academi.result || '</td>');
+        htp.p('</tr>');
+    end loop;
+       htp.p('</table>');
+
+    --Experiences
+
+     htp.p('<h2>Experience Details</h2>');
+        htp.p('<table border="1" style="width: 100%; border-collapse: collapse;">');
+        htp.p('<tr><th>Job Title</th><th>Department</th><th>Years of Experience</th></tr>');
+    for rec_experience in c_experience loop
+     htp.p('<tr>');
+        htp.p('<td>' || rec_experience.job_title || '</td>');
+        htp.p('<td>' || rec_experience.dept_name || '</td>');
+        htp.p('<td>' || rec_experience.Year_Of_Experience || '</td>');
+        htp.p('</tr>');
+         end loop;
+        htp.p('</table>');
+   
+
+   
+    
+--SKILLS
+    htp.p('<h2>Skills</h2>');
+        htp.p('<table border="1" style="width: 100%; border-collapse: collapse;">');
+        htp.p('<tr><th>Skill Name</th><th>Skill Level</th></tr>');
+for rec_skills in c_skills
+        Loop
+        htp.p('<tr>');
+        htp.p('<td>' || rec_skills.skill_name || '</td>');
+        htp.p('<td>' || rec_skills.skill_level || '</td>');
+        htp.p('</tr>');
+           end loop;
+        htp.p('</table>');
+
+     
+---REFERENCES
+          htp.p('<h2>References</h2>');
+        htp.p('<table border="1" style="width: 100%; border-collapse: collapse;">');
+        htp.p('<tr><th>Name</th><th>Designation</th><th>Contact No</th></tr>');
+        htp.p('<tr>');
+for rec_references in c_references
+        loop
+  htp.p('<tr>');
+        htp.p('<td>' || rec_references.Reference_name || '</td>');
+        htp.p('<td>' || rec_references.Designation || '</td>');
+        htp.p('<td>' || rec_references.contact_no || '</td>');
+        htp.p('</tr>');
+        end loop;
+    htp.p('</table>');
+    htp.p('</div>');
+    end;
+end;
