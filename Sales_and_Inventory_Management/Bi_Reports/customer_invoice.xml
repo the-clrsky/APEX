@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DOCUMENT>
+  <ROWSET>
+    <ROW>
+      <SALES_ID>7</SALES_ID>
+      <SALE_DATE>08/08/2024</SALE_DATE>
+      <NAME>Sadman Rahamat Bishal</NAME>
+      <PHONE>01921684646</PHONE>
+      <EMPLOYEE_NAME>Jasim Uddin</EMPLOYEE_NAME>
+      <Gross>121500</Gross>
+      <Paid>100000</Paid>
+      <Due>19070</Due>
+      <Return>0</Return>
+      <Discount>2</Discount>
+      <DIS_TYPE>Percentage(%25)</DIS_TYPE>
+      <Payable>119070</Payable>
+      <PRODUCT_NAME>MSI PRO MP223 21.5-Inch FHD Business %26amp; Productivity Monitor</PRODUCT_NAME>
+      <PRICE>10200</PRICE>
+      <UNIT>Piece (pc)</UNIT>
+      <QUANTITY>5</QUANTITY>
+      <TOTAL_AMOUNT>51000</TOTAL_AMOUNT>
+    </ROW>
+    <ROW>
+      <SALES_ID>7</SALES_ID>
+      <SALE_DATE>08/08/2024</SALE_DATE>
+      <NAME>Sadman Rahamat Bishal</NAME>
+      <PHONE>01921684646</PHONE>
+      <EMPLOYEE_NAME>Jasim Uddin</EMPLOYEE_NAME>
+      <Gross>121500</Gross>
+      <Paid>100000</Paid>
+      <Due>19070</Due>
+      <Return>0</Return>
+      <Discount>2</Discount>
+      <DIS_TYPE>Percentage(%25)</DIS_TYPE>
+      <Payable>119070</Payable>
+      <PRODUCT_NAME>Kingston Fury 8GB 3200MHz DDR4 RGB Desktop RAM</PRODUCT_NAME>
+      <PRICE>3200</PRICE>
+      <UNIT>Piece (pc)</UNIT>
+      <QUANTITY>5</QUANTITY>
+      <TOTAL_AMOUNT>16000</TOTAL_AMOUNT>
+    </ROW>
+    <ROW>
+      <SALES_ID>7</SALES_ID>
+      <SALE_DATE>08/08/2024</SALE_DATE>
+      <NAME>Sadman Rahamat Bishal</NAME>
+      <PHONE>01921684646</PHONE>
+      <EMPLOYEE_NAME>Jasim Uddin</EMPLOYEE_NAME>
+      <Gross>121500</Gross>
+      <Paid>100000</Paid>
+      <Due>19070</Due>
+      <Return>0</Return>
+      <Discount>2</Discount>
+      <DIS_TYPE>Percentage(%25)</DIS_TYPE>
+      <Payable>119070</Payable>
+      <PRODUCT_NAME>MSI PRO MP225 21.5%26quot; 100Hz IPS FHD Monitor</PRODUCT_NAME>
+      <PRICE>10900</PRICE>
+      <UNIT>Piece (pc)</UNIT>
+      <QUANTITY>5</QUANTITY>
+      <TOTAL_AMOUNT>54500</TOTAL_AMOUNT>
+    </ROW>
+  </ROWSET>
+</DOCUMENT>
+
