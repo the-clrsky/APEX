@@ -1,0 +1,39 @@
+DROP VIEW SALES.STOCK_VIEW;
+
+/* Formatted on 7/10/2024 11:52:54 AM (QP5 v5.360) */
+CREATE OR REPLACE FORCE VIEW SALES.STOCK_VIEW
+(
+    PRODUCT_ID,
+    PRODUCT_NAME,
+    PRODUCT_DESCRIPTIONS,
+    STOCK_QTY
+)
+BEQUEATH DEFINER
+AS
+      SELECT p.product_id,
+             p.product_name,
+             p.product_descriptions,
+             SUM (stock_qty)     AS stock_qty
+        FROM (  SELECT pt.product_id, SUM (pt.quantity) AS stock_qty
+                  FROM (-- Purchase
+                        SELECT product_id, quantity
+                          FROM purchase_transactions
+                         WHERE purchase_transaction_id IS NOT NULL
+                        UNION ALL
+                        -- Sales
+                        SELECT product_id, -quantity
+                          FROM sales_transactions
+                         WHERE sales_transaction_id IS NOT NULL
+                        UNION ALL
+                        -- Purchase returns
+                        SELECT product_id, -RETURN_QTY
+                          FROM PURCHASE_RETURN_TRANSACTIONS
+                         WHERE PUR_RTN_ID IS NOT NULL
+                        UNION ALL
+                        -- Sales returns
+                        SELECT product_id, RETURN_QTY
+                          FROM SALES_RETURN_TRANSACTIONS
+                         WHERE SLS_RTN_ID IS NOT NULL) pt
+              GROUP BY pt.product_id) iq
+             JOIN products p ON p.product_id = iq.product_id
+    GROUP BY p.product_id, p.product_name, p.product_descriptions;

@@ -1,0 +1,3 @@
+setTimeout(function(){
+    $('.t-Alert--success').fadeOut('slow');
+}, 3000); // Time in milliseconds (3000ms = 3 seconds)
