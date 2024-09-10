@@ -1,0 +1,92 @@
+DECLARE
+    v_html             VARCHAR2(32767);
+    v_daily_total_min  NUMBER;
+    v_daily_total_max  NUMBER;
+    v_grand_total      NUMBER := 0;  -- Initialize a variable to accumulate the grand total
+BEGIN
+    -- Split the P108_DAILY_TOTAL value into min and max values
+    IF :P108_DAILY_TOTAL IS NOT NULL THEN
+        v_daily_total_min := TO_NUMBER(SUBSTR(:P108_DAILY_TOTAL, 1, INSTR(:P108_DAILY_TOTAL, '|') - 1));
+        v_daily_total_max := TO_NUMBER(SUBSTR(:P108_DAILY_TOTAL, INSTR(:P108_DAILY_TOTAL, '|') + 1));
+    END IF;
+
+    -- Start HTML table with light blue border
+    v_html := '<table border="1" style="width: 100%; border-color: blue; border-width: 2px;">';
+    
+    FOR rec IN ( 
+        SELECT EXPENSE_ID, 
+               TO_CHAR(EXPENSE_DATE, 'fmDay, fmDD fmMonth, YYYY') AS EXPENSE_DATE, 
+               TO_CHAR(NVL(DAILY_TOTAL, 0), '999G999')||' '||'৳' AS DAILY_TOTAL
+        FROM EXPENSE_MASTER
+        WHERE (:P108_DAILY_TOTAL IS NULL OR DAILY_TOTAL BETWEEN v_daily_total_min AND v_daily_total_max)
+          AND (:P108_MONTH IS NULL OR TO_CHAR(EXPENSE_DATE, 'Month') IN (SELECT COLUMN_VALUE FROM TABLE(apex_string.split(:P108_MONTH, ':'))))
+          AND (:P108_YEAR IS NULL OR TO_CHAR(EXPENSE_DATE, 'YYYY') IN (SELECT COLUMN_VALUE FROM TABLE(apex_string.split(:P108_YEAR, ':'))))
+        ORDER BY EXPENSE_ID DESC
+    ) LOOP
+        -- Header row for each expense ID
+        v_html := v_html || '<tr>';
+        v_html := v_html || '<th>Expense ID</th>';
+        v_html := v_html || '<th>Expense Date</th>';
+        v_html := v_html || '<th>Day Total</th>';
+        v_html := v_html || '</tr>';
+
+        -- Populate table rows for EXPENSE_MASTER
+        v_html := v_html || '<tr>';
+        v_html := v_html || '<td style="text-align: center;"><b>' || rec.EXPENSE_ID || '</b></td>';
+        v_html := v_html || '<td style="text-align: center;">' || rec.EXPENSE_DATE || '</td>';
+        v_html := v_html || '<td style="text-align: right;">' || rec.DAILY_TOTAL || ' ' || '</td>';
+        v_html := v_html || '</tr>';
+
+        -- Nested table for expense details
+        v_html := v_html || '<tr>';
+        v_html := v_html || '<td colspan="3">'; -- Span columns to display details under main record
+        v_html := v_html || '<table border="1" style="width: 100%; border-color: green; border-width: 2px;">';
+
+        -- Header for details
+        v_html := v_html || '<tr>';
+        v_html := v_html || '<th style="width: 25%;">Item</th>';
+        v_html := v_html || '<th style="width: 15%;">Qty.</th>';
+        v_html := v_html || '<th style="width: 15%;">Unit Type</th>';
+        v_html := v_html || '<th style="width: 20%;">Unit Price</th>';
+        v_html := v_html || '<th style="width: 25%;">Subtotal</th>';
+        v_html := v_html || '</tr>';
+        
+        FOR detail_rec IN (
+            SELECT ITEM_NAME, QUANTITY, UNIT_TYPE, 
+                   NVL(SUBTOTAL, 0) AS SUBTOTAL, -- Store as a number for calculations
+                   TO_CHAR(NVL(UNIT_PRICE, 0), '999G999')||' '||'৳' AS UNIT_PRICE, 
+                   TO_CHAR(NVL(SUBTOTAL, 0), '999G999')||' '||'৳' AS SUBTOTAL_TEXT
+            FROM EXPENSE_DETAILS
+            WHERE EXPENSE_ID = rec.EXPENSE_ID
+        ) LOOP
+            -- Add each SUBTOTAL to the grand total
+            v_grand_total := v_grand_total + detail_rec.SUBTOTAL;
+
+            -- Add a row for each detail item
+            v_html := v_html || '<tr>';
+            v_html := v_html || '<td>' || detail_rec.ITEM_NAME || '</td>';
+            v_html := v_html || '<td>' || detail_rec.QUANTITY || '</td>';
+            v_html := v_html || '<td>' || detail_rec.UNIT_TYPE || '</td>';
+            v_html := v_html || '<td style="text-align: right;">' || detail_rec.UNIT_PRICE || ' ' || '</td>';
+            v_html := v_html || '<td style="text-align: right;">' || detail_rec.SUBTOTAL_TEXT || ' ' || '</td>';
+            v_html := v_html || '</tr>';
+        END LOOP;
+        
+        -- Close the nested table
+        v_html := v_html || '</table>';
+        v_html := v_html || '</td>';
+        v_html := v_html || '</tr>';
+    END LOOP;
+
+    -- Add the grand total row at the end of the table
+    v_html := v_html || '<tr>';
+    v_html := v_html || '<td colspan="2" style="text-align:right;"><strong>Grand Total:</strong></td>';
+    v_html := v_html || '<td style="text-align: right;"><strong>' || TO_CHAR(v_grand_total, '999G999') || ' ' || '৳' || ' ' || '</strong></td>';
+    v_html := v_html || '</tr>';
+
+    -- Close HTML table
+    v_html := v_html || '</table>';
+
+    -- Output HTML to the region
+    HTP.p(v_html);
+END;
