@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DOCUMENT>
+  <ROWSET>
+    <ROW>
+      <TOTAL_COMPANIES>5</TOTAL_COMPANIES>
+      <COMPANY_NAME>MSI (Micro-Star Int%26apos;l Co., Ltd.)</COMPANY_NAME>
+      <COMPANY_ADDRESS>No. 69, Lide St., Zhonghe Dist., New Taipei City 235, Taiwan</COMPANY_ADDRESS>
+      <EMPLOYEE_NAME>Arafat Ahmed</EMPLOYEE_NAME>
+      <SUPPLIER_NAME>Distribution Hub Limited</SUPPLIER_NAME>
+      <PRODUCT_COUNT>2</PRODUCT_COUNT>
+    </ROW>
+    <ROW>
+      <TOTAL_COMPANIES>5</TOTAL_COMPANIES>
+      <COMPANY_NAME>City Group</COMPANY_NAME>
+      <COMPANY_ADDRESS>City House, Plot # NW (J) 06, Road # 51, Gulshan - 02, Dhaka-1212, Bangladesh</COMPANY_ADDRESS>
+      <EMPLOYEE_NAME>Arafat Ahmed</EMPLOYEE_NAME>
+      <SUPPLIER_NAME>City Group</SUPPLIER_NAME>
+      <PRODUCT_COUNT>1</PRODUCT_COUNT>
+    </ROW>
+    <ROW>
+      <TOTAL_COMPANIES>5</TOTAL_COMPANIES>
+      <COMPANY_NAME>Kingston</COMPANY_NAME>
+      <COMPANY_ADDRESS>44, Laboratory Road, Siddique Plaza, New Elephant Road, Dhaka, Bangladesh</COMPANY_ADDRESS>
+      <EMPLOYEE_NAME>Arafat Ahmed</EMPLOYEE_NAME>
+      <SUPPLIER_NAME>Hans Bangladesh</SUPPLIER_NAME>
+      <PRODUCT_COUNT>2</PRODUCT_COUNT>
+    </ROW>
+    <ROW>
+      <TOTAL_COMPANIES>5</TOTAL_COMPANIES>
+      <COMPANY_NAME>Ajanta LLP</COMPANY_NAME>
+      <COMPANY_ADDRESS>Orpat Industrial Estate, Rajkot Highway, Morbi – 363641</COMPANY_ADDRESS>
+      <EMPLOYEE_NAME>Jasim Uddin</EMPLOYEE_NAME>
+      <SUPPLIER_NAME>DISNIE BANGLADESH</SUPPLIER_NAME>
+      <PRODUCT_COUNT>0</PRODUCT_COUNT>
+    </ROW>
+    <ROW>
+      <TOTAL_COMPANIES>5</TOTAL_COMPANIES>
+      <COMPANY_NAME>Meghna Group Industries Limited</COMPANY_NAME>
+      <COMPANY_ADDRESS>Fresh Villa, House # 15, Road # 34, Gulshan-1. Dhaka-1212</COMPANY_ADDRESS>
+      <EMPLOYEE_NAME>Jasim Uddin</EMPLOYEE_NAME>
+      <SUPPLIER_NAME>JANATA ENTERPRISE</SUPPLIER_NAME>
+      <PRODUCT_COUNT>0</PRODUCT_COUNT>
+    </ROW>
+  </ROWSET>
+</DOCUMENT>
+

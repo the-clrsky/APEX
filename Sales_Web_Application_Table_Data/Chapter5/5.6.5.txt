@@ -1,1 +1,0 @@
-SELECT name, country, rating FROM EBA_DEMO_IG_PEOPLE

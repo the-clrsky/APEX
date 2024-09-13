@@ -1,5 +1,0 @@
-select to_char(o.order_timestamp,'Month DD, YYYY') order_day, SUM(o.order_total) sales
-from  demo_orders o
-group by to_char(o.order_timestamp,'Mon DD, YYYY'), order_timestamp
-order by 2 desc nulls last
-fetch first 5 rows only

@@ -1,4 +1,0 @@
-return '<img src="'||apex_util.get_blob_file_src('P6_PRODUCT_IMAGE',:P6_PRODUCT_ID)||'" />';
-
-SELECT  mimetype from demo_product_info 
-WHERE product_id = :P6_PRODUCT_ID AND mimetype like 'image%'

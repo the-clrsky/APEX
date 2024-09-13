@@ -1,7 +1,0 @@
-SELECT b.cust_last_name || ', ' || b.cust_first_name 
-       || ' - '|| count(a.order_id) ||' Order(s)' customer_name,
-       SUM(a.ORDER_TOTAL) order_total,  b.customer_id id
-FROM   demo_orders a, DEMO_CUSTOMERS b
-WHERE a.customer_id = b.customer_id
-GROUP BY b.customer_id, b.cust_last_name || ', ' || b.cust_first_name
-ORDER BY NVL(SUM(a.ORDER_TOTAL),0) DESC

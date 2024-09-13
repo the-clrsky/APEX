@@ -1,1 +1,0 @@
-javascript:apex.confirm('Are you sure you want to delete this image? It will no longer be available for others to see if you continue.','DELETE_IMAGE');

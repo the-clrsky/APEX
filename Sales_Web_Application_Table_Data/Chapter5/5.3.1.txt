@@ -1,5 +1,0 @@
-SELECT customer_id,
-       cust_last_name || ', ' || cust_first_name customer_name, 
-       CUST_STREET_ADDRESS1 ||decode(CUST_STREET_ADDRESS2, null, null, ', ' || CUST_STREET_ADDRESS2) customer_address,
-       cust_city, cust_state, cust_postal_code
-FROM demo_customers

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DOCUMENT>
+  <ROWSET>
+    <ROW>
+      <ID>140</ID>
+      <NAME>Distribution Hub Limited</NAME>
+      <PHONE>9666751751</PHONE>
+      <EMAIL>info@distributionhub.com.bd</EMAIL>
+      <ADDR>114, Kazi Nazrul Islam Avenue, Office 5, Level - 9, Rupayan Trade Center, Dhaka</ADDR>
+      <PRO_AGENT>Arafat Ahmed</PRO_AGENT>
+      <PRODUCT_COUNT>2</PRODUCT_COUNT>
+    </ROW>
+    <ROW>
+      <ID>120</ID>
+      <NAME>City Group</NAME>
+      <PHONE>9611611777</PHONE>
+      <EMAIL>corporate@citygroupbd.com</EMAIL>
+      <ADDR>City House, Plot # NW (J) 06, Road # 51, Gulshan - 02, Dhaka-1212, Bangladesh</ADDR>
+      <PRO_AGENT>Arafat Ahmed</PRO_AGENT>
+      <PRODUCT_COUNT>1</PRODUCT_COUNT>
+    </ROW>
+    <ROW>
+      <ID>100</ID>
+      <NAME>Hans Bangladesh</NAME>
+      <PHONE>1844279531</PHONE>
+      <EMAIL>info@hans-bd.com</EMAIL>
+      <ADDR>Siddique Plaza, New Elephant Road, Dhaka-1250, Bangladesh</ADDR>
+      <PRO_AGENT>Arafat Ahmed</PRO_AGENT>
+      <PRODUCT_COUNT>2</PRODUCT_COUNT>
+    </ROW>
+    <ROW>
+      <ID>161</ID>
+      <NAME>DISNIE BANGLADESH</NAME>
+      <PHONE>01754145608</PHONE>
+      <EMAIL>disniebd@gmail.com</EMAIL>
+      <ADDR>Disnie, Shop-91/92,95/96, 2nd Floor, Chondrima Super Market, Dhaka-1205</ADDR>
+      <PRO_AGENT>Jasim Uddin</PRO_AGENT>
+      <PRODUCT_COUNT>0</PRODUCT_COUNT>
+    </ROW>
+    <ROW>
+      <ID>180</ID>
+      <NAME>Meghna Group Industries Limited</NAME>
+      <PHONE>0966677705</PHONE>
+      <EMAIL>info@mgi.org</EMAIL>
+      <ADDR>Fresh Villa, House # 15, Road # 34, Gulshan-1. Dhaka-1212</ADDR>
+      <PRO_AGENT>Jasim Uddin</PRO_AGENT>
+      <PRODUCT_COUNT>0</PRODUCT_COUNT>
+    </ROW>
+    <ROW>
+      <ID>160</ID>
+      <NAME>JANATA ENTERPRISE</NAME>
+      <PHONE>01917068571</PHONE>
+      <EMAIL>janataent71@gmail.com</EMAIL>
+      <ADDR>1734, Janatabug, Kadamtali, Dhaka - 1236</ADDR>
+      <PRO_AGENT>Jasim Uddin</PRO_AGENT>
+      <PRODUCT_COUNT>0</PRODUCT_COUNT>
+    </ROW>
+  </ROWSET>
+</DOCUMENT>
+

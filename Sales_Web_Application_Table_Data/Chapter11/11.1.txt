@@ -1,9 +1,0 @@
-select to_char(o.order_timestamp,'Month YYYY') month,
-       o.order_total amount,
-       c.cust_last_name||', '||c.cust_first_name customer,
-       p.product_name product
-from  demo_orders o, demo_order_items oi, demo_customers c, demo_product_info p 
-where o.order_id = oi.order_id and 
-      p.product_id = oi.product_id and 
-      o.customer_id = c.customer_id  
-order by o.order_id

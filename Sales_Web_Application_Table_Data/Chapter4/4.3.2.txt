@@ -1,5 +1,0 @@
-select sum(o.order_total) total_sales,
-       count(distinct o.order_id) total_orders,
-       count(distinct o.customer_id) total_customers
-from demo_orders o
-where order_timestamp >= to_date(to_char(sysdate,'YYYYMM')||'01','YYYYMMDD')

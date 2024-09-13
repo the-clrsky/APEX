@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DOCUMENT>
+  <ROWSET>
+    <ROW>
+      <Total>5</Total>
+      <NAME>Food and Beverage</NAME>
+      <DESCRIPTION>Food and Beverage category includes snacks, drinks, pantry staples, and gourmet items. Procure high-quality, fresh, and diverse products to meet customer needs for daily consumption and special occasions.</DESCRIPTION>
+    </ROW>
+    <ROW>
+      <Total>5</Total>
+      <NAME>Home Appliance</NAME>
+      <DESCRIPTION>Home Appliance category includes products like refrigerators, washing machines, microwaves, dishwashers, and air conditioners. Procure reliable, energy-efficient models to meet diverse household needs and enhance daily living.</DESCRIPTION>
+    </ROW>
+    <ROW>
+      <Total>5</Total>
+      <NAME>Health and Beauty</NAME>
+      <DESCRIPTION>Health and Beauty category covers skincare, haircare, personal care products, cosmetics, and wellness items. Procure high-quality, effective products that promote well-being and enhance personal appearance for our customers.</DESCRIPTION>
+    </ROW>
+    <ROW>
+      <Total>5</Total>
+      <NAME>Electronics</NAME>
+      <DESCRIPTION>Electronics category includes computer-related products like RAM, monitors, pendrives, and peripherals. Procure reliable, high-performance components to meet customer demands for quality computing and storage solutions.</DESCRIPTION>
+    </ROW>
+    <ROW>
+      <Total>5</Total>
+      <NAME>Toys and Sports</NAME>
+      <DESCRIPTION>Toys and Sports category features children’s toys, games, sporting goods, and outdoor equipment. Procure safe, durable, and engaging products to promote active play and physical fitness for all ages.</DESCRIPTION>
+    </ROW>
+  </ROWSET>
+</DOCUMENT>
+

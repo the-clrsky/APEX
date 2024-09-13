@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DOCUMENT>
+  <ROWSET>
+    <ROW>
+      <Month_x002C__x0020_Year>July      2024</Month_x002C__x0020_Year>
+      <PURCHASE_ID>2</PURCHASE_ID>
+      <PURCHASE_DATE>07/25/2024</PURCHASE_DATE>
+      <TOTAL_AMOUNT>37500</TOTAL_AMOUNT>
+      <PAID_AMOUNT>30000</PAID_AMOUNT>
+      <DUE>7500</DUE>
+      <PRODUCT_NAME>Water Heater – Gas Geyser – OGG-6L P – Grey</PRODUCT_NAME>
+      <PRICE>7500</PRICE>
+      <QUANTITY>5</QUANTITY>
+      <UNIT_TYPE>Piece (pc)</UNIT_TYPE>
+      <AMOUNT>37500</AMOUNT>
+    </ROW>
+    <ROW>
+      <Month_x002C__x0020_Year>July      2024</Month_x002C__x0020_Year>
+      <PURCHASE_ID>3</PURCHASE_ID>
+      <PURCHASE_DATE>07/25/2024</PURCHASE_DATE>
+      <TOTAL_AMOUNT>20700</TOTAL_AMOUNT>
+      <PAID_AMOUNT>20700</PAID_AMOUNT>
+      <DUE>0</DUE>
+      <PRODUCT_NAME>Coffee Maker ( Walton WDCM-G15L )</PRODUCT_NAME>
+      <PRICE>2300</PRICE>
+      <QUANTITY>9</QUANTITY>
+      <UNIT_TYPE>Piece (pc)</UNIT_TYPE>
+      <AMOUNT>20700</AMOUNT>
+    </ROW>
+    <ROW>
+      <Month_x002C__x0020_Year>July      2024</Month_x002C__x0020_Year>
+      <PURCHASE_ID>4</PURCHASE_ID>
+      <PURCHASE_DATE>07/14/2024</PURCHASE_DATE>
+      <TOTAL_AMOUNT>22800</TOTAL_AMOUNT>
+      <PAID_AMOUNT>15000</PAID_AMOUNT>
+      <DUE>7800</DUE>
+      <PRODUCT_NAME>Dry Iron</PRODUCT_NAME>
+      <PRICE>1900</PRICE>
+      <QUANTITY>12</QUANTITY>
+      <UNIT_TYPE>Piece (pc)</UNIT_TYPE>
+      <AMOUNT>22800</AMOUNT>
+    </ROW>
+    <ROW>
+      <Month_x002C__x0020_Year>July      2024</Month_x002C__x0020_Year>
+      <PURCHASE_ID>7</PURCHASE_ID>
+      <PURCHASE_DATE>07/14/2024</PURCHASE_DATE>
+      <TOTAL_AMOUNT>39600</TOTAL_AMOUNT>
+      <PAID_AMOUNT>39600</PAID_AMOUNT>
+      <DUE>0</DUE>
+      <PRODUCT_NAME>Climate Control – Convector Heaters</PRODUCT_NAME>
+      <PRICE>4800</PRICE>
+      <QUANTITY>6</QUANTITY>
+      <UNIT_TYPE>Piece (pc)</UNIT_TYPE>
+      <AMOUNT>28800</AMOUNT>
+    </ROW>
+    <ROW>
+      <Month_x002C__x0020_Year>July      2024</Month_x002C__x0020_Year>
+      <PURCHASE_ID>7</PURCHASE_ID>
+      <PURCHASE_DATE>07/14/2024</PURCHASE_DATE>
+      <TOTAL_AMOUNT>39600</TOTAL_AMOUNT>
+      <PAID_AMOUNT>39600</PAID_AMOUNT>
+      <DUE>0</DUE>
+      <PRODUCT_NAME>Pressure Cooker 5L</PRODUCT_NAME>
+      <PRICE>1800</PRICE>
+      <QUANTITY>6</QUANTITY>
+      <UNIT_TYPE>Piece (pc)</UNIT_TYPE>
+      <AMOUNT>10800</AMOUNT>
+    </ROW>
+    <ROW>
+      <Month_x002C__x0020_Year>July      2024</Month_x002C__x0020_Year>
+      <PURCHASE_ID>8</PURCHASE_ID>
+      <PURCHASE_DATE>07/15/2024</PURCHASE_DATE>
+      <TOTAL_AMOUNT>1800</TOTAL_AMOUNT>
+      <PAID_AMOUNT>1700</PAID_AMOUNT>
+      <DUE>100</DUE>
+      <PRODUCT_NAME>Chicken Cutlets  ( 4 pcs )</PRODUCT_NAME>
+      <PRICE>180</PRICE>
+      <QUANTITY>10</QUANTITY>
+      <UNIT_TYPE>4</UNIT_TYPE>
+      <AMOUNT>1800</AMOUNT>
+    </ROW>
+  </ROWSET>
+</DOCUMENT>
+

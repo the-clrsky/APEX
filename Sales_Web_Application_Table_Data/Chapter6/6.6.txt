@@ -1,3 +1,0 @@
-select p.product_id, p.product_name, 
-dbms_lob.getlength(p.product_image) document
-from  demo_product_info p
